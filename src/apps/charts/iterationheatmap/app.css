@@ -1,0 +1,52 @@
+.app {
+     /* Add app styles here */
+}
+
+.defined-sample-swatch {
+ 	width: 15px;
+    height: 15px;
+    border: 1px solid #EEE;
+    background: #E0E0E0; /* light-gray */
+    border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	float: left;
+	margin: 0 1px 0 6px;
+}
+
+.in-progress-sample-swatch {
+ 	width: 15px;
+    height: 15px;
+    border: 1px solid #EEE;
+    background: #00A9E0; /* cyan */
+    border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	float: left;
+	margin: 0 1px 0 6px;
+}
+
+.completed-sample-swatch {
+ 	width: 15px;
+    height: 15px;
+    border: 1px solid #EEE;
+    background: #8DC63F; /* lime */
+    border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	float: left;
+	margin: 0 1px 0 6px;
+}
+
+.blocked-sample-swatch {
+ 	width: 15px;
+    height: 15px;
+    border: 1px solid #EEE;
+    background: #EF3F35; /* rally red */
+    border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	float: left;
+	margin: 0 1px 0 6px;
+}
+

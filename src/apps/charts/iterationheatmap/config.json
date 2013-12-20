@@ -1,0 +1,12 @@
+{
+   "name": "Iteration Heat Map",
+   "className": "Rally.apps.charts.iterationheatmap.IterationHeatMapApp",
+   "server": "https://rally1.rallydev.com",
+   "sdk": "x",
+   "javascript": [
+      "IterationHeatMapApp.js"
+   ],
+   "css": [
+      "app.css"
+   ]
+}
