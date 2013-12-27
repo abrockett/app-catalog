@@ -114,16 +114,20 @@
                 }
             });
 
-            Deft.Promise.all(promises).then({
-                success: this._onAllDataLoaded,
-                scope: this,
-                failure: function(error) {
-                    //error handling?
-                }
-            });
+            if (promises.length > 0) {
+                Deft.Promise.all(promises).then({
+                    success: this._onAllDataLoaded,
+                    scope: this,
+                    failure: function(error) {
+                        console.log('Error loading data');
+                    }
+                });
+            } else {
+                this._onAllDataLoaded();
+            }
         },
 
-        _onAllDataLoaded: function(childCollections) {
+        _onAllDataLoaded: function() {
             _.each(this._topLevelStore.getRange(), function(record) {
                 var defects = record.get('Defects'),
                     tasks = record.get('Tasks');
@@ -151,8 +155,6 @@
                     }
                 }
             }, this);
-
-            console.log(this._childChartData);
 
             this._createChart();
         },
@@ -272,7 +274,7 @@
              scope.setLoading( false );*/
         },
 
-        formatTooltip: function() {
+        _formatTooltip: function() {
             var storyCount = '';
             if(!this.point.userStory) {
                 var numStories = this.point.hasChildren ? this.y : 0;
