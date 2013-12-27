@@ -11,10 +11,12 @@
     Ext.define('Rally.apps.charts.iterationheatmap.IterationHeatMapApp', {
         extend: 'Rally.app.TimeboxScopedApp',
         scopeType: 'iteration',
-
-        componentCls: 'app',
+        componentCls: 'iterationheatmap',
+        alias: 'widget.rallyiterationheatmap',
 
         onScopeChange: function(scope) {
+
+            this.remove('heatmapChart');
 
             if (!this.models) {
                 this.configureMessageListeners();
@@ -44,7 +46,7 @@
             _.each(allowedValues, function(value) {
                 var state = value.data.StringValue;
                 if (state) {
-                    if (state == stateMap[stateMapIndex + 1]) {
+                    if (state === stateMap[stateMapIndex + 1]) {
                         stateMapIndex++;
                     }
                     storyStates[state] = stateMap[stateMapIndex];
@@ -156,7 +158,16 @@
                 }
             }, this);
 
+            this._onLoad();
+
             this._createChart();
+        },
+
+        _onLoad: function() {
+            this.fireEvent('contentupdated');
+            if (Rally.BrowserTest) {
+                Rally.BrowserTest.publishComponentReady(this);
+            }
         },
 
         _colorFromStatus: function(state, blocked) { //refactor into css and classes, should get cleaner
@@ -168,7 +179,6 @@
         },
 
         _addPoint: function(name, color, count, rallyName, status, blocked, blockedReason, hasChildren, ref, parentFormattedID){
-            //utility class
             return {
                 name: name, // FormattedID for chart
                 y: count,
@@ -205,7 +215,7 @@
 
         _createChart: function() {
             this.add({
-                id: 'piHeatmapChart',
+                itemId: 'heatmapChart',
                 xtype: 'rallychart',
                 chartData: {
                     series: [
@@ -269,9 +279,6 @@
                     }
                 }
             });
-            /*scope.add(chart);
-             chart.getEl().unmask(); //is this needed?
-             scope.setLoading( false );*/
         },
 
         _formatTooltip: function() {
